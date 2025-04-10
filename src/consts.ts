@@ -3,6 +3,7 @@
 
 export const SITE_URL = "https://geeksforfaith.com";
 export const SITE_TITLE = "Geeks for Faith";
-export const SITE_DESCRIPTION = "Geeks for Faith is TBD.";
+export const SITE_DESCRIPTION =
+  "May this be a place where we can share our faith, our tech, and learn from one another.";
 
 export const EMAIL = "cameronandrewpak@gmail.com";
