@@ -1,6 +1,12 @@
 ---
+import { getCollection } from "astro:content";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import Layout from "../layouts/Layout.astro";
+import { formatDate } from "../lib/utils";
+const collection = await getCollection("posts");
+const posts = collection.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <Layout
@@ -10,13 +16,31 @@ import Layout from "../layouts/Layout.astro";
 >
   <main class="space-y-4">
     <h1 class="text-2xl font-medium">Geeks for Faith</h1>
-    <p>
-      Domain name inspired by Pat Gelsinger when he said, we are "geeks for
-      faith".
+    <p class="text-zinc-500">
+      Domain name inspired by Pat Gelsinger when he declared we are "geeks for
+      faith" at the Missional AI conference in 2025.
     </p>
-    <p>
+    <p class="text-zinc-500">
       May this be a place where we can share our faith, our tech, and learn from
       one another.
     </p>
+    <hr />
+    <ul class="flex flex-col gap-1.5">
+      {
+        posts.map((post) => (
+          <li>
+            <a
+              href={`/posts/${post.slug}`}
+              class="group flex justify-between gap-3"
+            >
+              <span class="group-hover:underline">{post.data.title}</span>
+              <span class="text-nowrap text-zinc-500">
+                {formatDate(post.data.date)}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </main>
 </Layout>
