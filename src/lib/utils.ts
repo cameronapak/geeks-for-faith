@@ -101,7 +101,7 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
     name: "Christians in Tech Career Networking on LinkedIn",
     description:
       "A LinkedIn group for Christians in tech to network and grow professionally and spiritually.",
-    url: "https://www.linkedin.com/groups/13946994",
+    url: "https://www.linkedin.com/groups/14538040/",
   },
   {
     name: "Christians in Tech",
