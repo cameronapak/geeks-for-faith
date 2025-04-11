@@ -78,7 +78,7 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
     name: "Faithly",
     description:
       "A LinkedIn-style platform for pastors, staff, and volunteers in ministry organizations.",
-    url: "https://faithly.org",
+    url: "https://faithly.co",
   },
   {
     name: "AI for Church Leaders and Pastors",
@@ -96,7 +96,7 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
     name: "ICF Digital & Technics",
     description:
       "A Discord channel by ICF Church for digital and tech enthusiasts.",
-    url: "https://digital.icf.church/community",
+    url: "https://discord.com/invite/cFxGCuh3gh",
   },
   {
     name: "Christians in Tech Career Networking on LinkedIn",
@@ -107,14 +107,14 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
   {
     name: "Christians in Tech",
     description:
-      "A community with online Discord and in-person meetups (Columbus) for career and spiritual growth.",
-    url: "https://christiansintech.com",
+      "A Discord community at the intersection of Faith and Technology.",
+    url: "https://linktr.ee/christiansintechorg",
   },
   {
-    name: "CHAI GLOBAL",
+    name: "Christians in AI (CHAI)",
     description:
       "A global community exploring the intersection of Christianity and artificial intelligence.",
-    url: "https://chaiglobal.org",
+    url: "https://sites.google.com/view/chai-global/",
   },
   {
     name: "Christian Game Developers",
