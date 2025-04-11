@@ -32,4 +32,13 @@ const { Content } = await post.render();
       <Content />
     </article>
   </main>
+  <script is:inline>
+    // Find anchor tags on the page that are not on this page
+    const anchorTags = document.querySelectorAll("a");
+    anchorTags.forEach((anchor) => {
+      if (!anchor.href.includes(window.location.origin)) {
+        anchor.target = "_blank";
+      }
+    });
+  </script>
 </Layout>
