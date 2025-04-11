@@ -1,12 +1,14 @@
 ---
-title: "So.. I bought a domain"
+title: "So... I bought a domain"
 description: "About geeksforfaith.com"
 date: "Apr 10 2025"
 ---
 
 Welcome to GeeksForFaith.com!
 
-At this time, I'm not yet sure what to do with this domain. When Pat Gelsinger declared that we're "geeks for faith" at the Missional AI conference, I couldn't help but grab out my laptop and search for the domain. And, it was available to my suprise.
+Pat Gelsinger declared that we're "geeks for faith" at the Missional AI conference.
+
+I couldn't help but grab out my laptop and search for the domain. And, it was available to my suprise.
 
 While I don't know the exact use for this domain at this time, I do know some things:
 
