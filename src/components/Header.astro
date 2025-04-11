@@ -1,14 +1,20 @@
 ---
-import { EMAIL } from "../consts";
 import ThemeToggle from "./ThemeToggle.astro";
+import ExternalLink from "./icons/ExternalLink.astro";
 ---
 
 <header class="mb-6 flex items-center justify-between" transition:name="header">
   <nav class="flex items-center gap-4">
     <a href="/"> home </a>
-    <a href="/posts"> posts </a>
     <a href="/faith-tech-communities"> communities </a>
-    <a href={`mailto:${EMAIL}`}>email cam</a>
+    <a
+      class="flex items-center gap-1"
+      target="_blank"
+      href="https://faith.tools"
+    >
+      faith.tools <ExternalLink className="h-3 w-3" />
+    </a>
+    <a target="_blank" href="https://letterbird.co/cameronandrewpak">contact</a>
   </nav>
   <ThemeToggle />
 </header>
