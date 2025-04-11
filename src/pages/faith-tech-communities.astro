@@ -7,25 +7,32 @@ import { FAITH_TECH_COMMUNITIES } from "../lib/utils";
   title="Faith Tech Communities"
   description="A list of faith tech communities"
 >
-  <h1 class="text-2xl font-medium">Faith & Tech Communities</h1>
+  <h1 class="text-2xl font-medium">Online Faith & Tech Communities</h1>
+  <p class="mt-4">
+    Let's be honest, the Geeks for Faith community isn't the one and only faith
+    tech community out there. So here's a list of some of the ones I know about.
+    If you know of any others, please let me know.
+  </p>
   <ul class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
     {
       FAITH_TECH_COMMUNITIES.map((community) => (
         <li class="h-full w-full">
           <a
             target="_blank"
-            class="block h-full w-full rounded-lg border p-6"
+            class="block h-full w-full rounded-lg border p-6 shadow-none transition-shadow duration-300 hover:shadow-md"
             href={community.url}
           >
             <div class="flex items-baseline gap-2">
               <img
                 src={`https://www.google.com/s2/favicons?domain=${community.url}`}
                 alt={`${community.name} favicon`}
-                class="mb-2 h-4 w-4"
+                class="h-4 w-4 rounded-full bg-white"
               />
-              <h2 class="text-lg font-medium">{community.name}</h2>
+              <h2 class="text-lg font-medium leading-tight">
+                {community.name}
+              </h2>
             </div>
-            <p class="text-sm text-zinc-500">{community.description}</p>
+            <p class="mt-2 text-sm text-zinc-500">{community.description}</p>
           </a>
         </li>
       ))

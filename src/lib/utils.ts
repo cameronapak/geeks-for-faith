@@ -36,7 +36,7 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
     name: "codeFellowship()",
     description:
       "A Christ-centered developer video podcast focused on developer stories, tech topics, and the Gospel.",
-    url: "https://codefellowship.dev",
+    url: "https://creators.spotify.com/pod/profile/codefellowship/",
   },
   {
     name: "The Kingdom Founder",
@@ -54,7 +54,7 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
     name: "faith.tools Christians in Tech on X",
     description:
       "A community on X/Twitter for fellowship, collaboration, and showcasing Christian tech projects.",
-    url: "https://twitter.com/faithdottools",
+    url: "https://x.com/i/communities/1773059527652393233",
   },
   {
     name: "Prayer For Designers",
@@ -115,5 +115,11 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
     description:
       "A global community exploring the intersection of Christianity and artificial intelligence.",
     url: "https://chaiglobal.org",
+  },
+  {
+    name: "Christian Game Developers",
+    description:
+      "A private online community that supports and encourages believers in the game development industry to honor God through their work.",
+    url: "https://www.facebook.com/groups/ChristianGameDevelopers/",
   },
 ];
