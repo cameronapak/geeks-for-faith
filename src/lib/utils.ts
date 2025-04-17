@@ -38,6 +38,11 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
     url: "https://creators.spotify.com/pod/profile/codefellowship/",
   },
   {
+    name: "Remnant in Tech",
+    description: "Join the remnant in tech",
+    url: "https://remnant.chat/",
+  },
+  {
     name: "The Kingdom Founder",
     description:
       "A paid community for Christian entrepreneurs, CEOs, creatives, and leaders seeking connection and support.",
