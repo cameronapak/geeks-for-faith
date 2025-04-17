@@ -64,7 +64,7 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
     name: "Prayer For Designers",
     description:
       "Slack and Facebook groups for Christian designers to connect and pray together.",
-    url: "https://www.facebook.com/groups/prayerfordesigners",
+    url: "https://prayerfordesigners.com",
   },
   {
     name: "un-dark.io",
@@ -76,7 +76,7 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
     name: "Faith Driven Entrepreneur",
     description:
       "A global network of investors and entrepreneurs who believe God owns it all and care about faith-driven investment.",
-    url: "https://www.faithdrivenentrepreneur.org",
+    url: "https://groups.faithdrivenentrepreneur.org/app/home",
   },
   {
     name: "Faithly",
@@ -100,7 +100,7 @@ export const FAITH_TECH_COMMUNITIES: Community[] = [
     name: "ICF Digital & Technics",
     description:
       "A Discord channel by ICF Church for digital and tech enthusiasts.",
-    url: "https://discord.com/invite/cFxGCuh3gh",
+    url: "http://digital.icf.church/community",
   },
   {
     name: "Christians in Tech Career Networking on LinkedIn",
