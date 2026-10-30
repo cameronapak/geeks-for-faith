@@ -1,7 +1,18 @@
 ---
 import ExternalLink from "../components/icons/ExternalLink.astro";
 import Layout from "../layouts/Layout.astro";
-import { FAITH_TECH_COMMUNITIES } from "../lib/utils";
+import { FAITH_TECH_COMMUNITIES, isNewCommunity, TOPICS } from "../lib/utils";
+
+const platforms = [
+  ...new Set(FAITH_TECH_COMMUNITIES.map((c) => c.platform)),
+].sort();
+const regions = [
+  ...new Set(FAITH_TECH_COMMUNITIES.map((c) => c.region)),
+].sort();
+const chip =
+  "rounded-full border px-3 py-1 text-zinc-600 transition-colors hover:bg-zinc-50 aria-pressed:border-zinc-900 aria-pressed:bg-zinc-900 aria-pressed:text-white dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:aria-pressed:border-zinc-100 dark:aria-pressed:bg-zinc-100 dark:aria-pressed:text-zinc-900";
+const field =
+  "rounded-md border bg-transparent px-2 py-1.5 text-sm dark:border-zinc-700 dark:bg-zinc-900";
 ---
 
 <Layout
@@ -15,31 +26,223 @@ import { FAITH_TECH_COMMUNITIES } from "../lib/utils";
     and tech. I've compiled a list of some of the ones I know about. If you know
     of any others, please let me know.
   </p>
-  <ul class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+  <div
+    class="mt-4 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-200"
+    role="note"
+  >
+    <p>
+      These groups aren't vetted or endorsed. Use prayerful caution anytime you
+      meet strangers online.
+    </p>
+  </div>
+  <div class="mt-6 flex flex-col gap-3">
+    <input
+      id="search"
+      type="search"
+      placeholder="Search communities"
+      class={`${field} w-full`}
+    />
+    <div class="flex flex-wrap gap-2 text-sm" id="topic-chips">
+      <button class={chip} data-topic="All" aria-pressed="true">All</button>
+      {
+        TOPICS.map((topic) => (
+          <button class={chip} data-topic={topic} aria-pressed="false">
+            {topic}
+          </button>
+        ))
+      }
+    </div>
+    <div class="flex flex-wrap items-center gap-2 text-sm">
+      <select id="platform" class={field} aria-label="Platform">
+        <option value="">Any platform</option>
+        {platforms.map((p) => <option value={p}>{p}</option>)}
+      </select>
+      <select id="region" class={field} aria-label="Region">
+        <option value="">Any region</option>
+        {regions.map((r) => <option value={r}>{r}</option>)}
+      </select>
+      <select id="sort" class={field} aria-label="Sort">
+        <option value="default">Sort: Recommended</option>
+        <option value="az">Sort: A to Z</option>
+        <option value="new">Sort: Newest first</option>
+      </select>
+      <span id="count" class="ml-auto text-zinc-500"></span>
+    </div>
+  </div>
+  <ul id="list" class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
     {
-      FAITH_TECH_COMMUNITIES.map((community) => (
-        <li class="h-full w-full">
+      FAITH_TECH_COMMUNITIES.map((c, i) => (
+        <li
+          class="h-full w-full"
+          data-index={i}
+          data-name={c.name}
+          data-description={c.description}
+          data-topic={c.topic}
+          data-platform={c.platform}
+          data-region={c.region}
+          data-added={c.addedAt}
+        >
           <a
             target="_blank"
-            class="relative block h-full w-full rounded-lg border p-6 shadow-none transition-shadow duration-300 hover:shadow-md"
-            href={community.url}
-            title={`Visit ${community.name}`}
+            class="relative block h-full w-full rounded-lg border p-6 shadow-none transition-shadow duration-300 hover:shadow-md dark:border-zinc-700"
+            href={c.url}
+            title={`Visit ${c.name}`}
           >
             <ExternalLink className="absolute right-2 top-2 h-4 w-4 opacity-20" />
             <div class="flex items-baseline gap-2">
               <img
-                src={`https://www.google.com/s2/favicons?domain=${community.url}`}
-                alt={`${community.name} favicon`}
+                src={`https://www.google.com/s2/favicons?domain=${c.url}`}
+                alt={`${c.name} favicon`}
                 class="h-4 w-4 rounded-full bg-white"
               />
-              <h2 class="text-lg font-medium leading-tight">
-                {community.name}
-              </h2>
+              <h2 class="text-lg font-medium leading-tight">{c.name}</h2>
+              {isNewCommunity(c.addedAt) && (
+                <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                  New
+                </span>
+              )}
             </div>
-            <p class="mt-2 text-sm text-zinc-500">{community.description}</p>
+            <p class="mt-2 text-sm text-zinc-500">{c.description}</p>
+            <div class="mt-3 flex flex-wrap gap-1">
+              {[c.platform, c.region].map((tag) => (
+                <span class="rounded border px-1.5 py-0.5 text-xs text-zinc-500 dark:border-zinc-700">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </a>
         </li>
       ))
     }
+    <li class="h-full w-full" id="add-card">
+      <a
+        target="_blank"
+        class="flex h-full w-full flex-col justify-center rounded-lg border border-dashed p-6 text-center transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-800"
+        href="https://github.com/cameronapak/geeks-for-faith/edit/main/src/lib/utils.ts"
+        title="Add your community on GitHub"
+      >
+        <span class="text-2xl leading-none text-zinc-400">+</span>
+        <h2 class="mt-2 text-lg font-medium leading-tight">
+          Add your community
+        </h2>
+        <p class="mt-2 text-sm text-zinc-500">
+          Know a group we missed? Open a pull request on GitHub to add it to
+          this list.
+        </p>
+      </a>
+    </li>
   </ul>
+  <p id="empty" class="mt-6 hidden text-center text-sm text-zinc-500">
+    No communities match. Try clearing a filter, or add one you know.
+  </p>
 </Layout>
+
+<script>
+  import Fuse from "fuse.js";
+
+  const init = () => {
+    const list = document.getElementById("list");
+    if (!list) return;
+    const search = document.getElementById("search") as HTMLInputElement;
+    const platform = document.getElementById("platform") as HTMLSelectElement;
+    const region = document.getElementById("region") as HTMLSelectElement;
+    const sort = document.getElementById("sort") as HTMLSelectElement;
+    const count = document.getElementById("count")!;
+    const empty = document.getElementById("empty")!;
+    const addCard = document.getElementById("add-card")!;
+    const chips = document.querySelectorAll<HTMLButtonElement>(
+      "#topic-chips button",
+    );
+    const items = [...list.querySelectorAll<HTMLLIElement>("li[data-index]")];
+    let topic = "All";
+    const fuse = new Fuse(
+      items.map((item) => ({ ...item.dataset, item })),
+      {
+        keys: [
+          { name: "name", weight: 3 },
+          "description",
+          "topic",
+          "platform",
+          "region",
+        ],
+        threshold: 0.35,
+        ignoreLocation: true,
+      },
+    );
+
+    const render = () => {
+      const q = search.value.trim();
+      // Whole-word hits rank first, so "ai" finds AI groups before "Faith".
+      const word = new RegExp(
+        `\\b${q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`,
+        "i",
+      );
+      const isWordHit = ({ dataset: d }: HTMLElement) =>
+        word.test(
+          [d.name, d.description, d.topic, d.platform, d.region].join(" "),
+        );
+      // Very short queries are too fuzzy, so they only match whole words.
+      const hits = !q
+        ? []
+        : q.length <= 2
+          ? items.filter(isWordHit)
+          : fuse
+              .search(q)
+              .map((result) => result.item.item)
+              .sort((a, b) => Number(isWordHit(b)) - Number(isWordHit(a)));
+      // Best match first, used when searching with the Recommended sort.
+      const rank = new Map(hits.map((item, i) => [item, i]));
+      let shown = 0;
+      for (const item of items) {
+        const d = item.dataset;
+        const match =
+          (topic === "All" || d.topic === topic) &&
+          (!platform.value || d.platform === platform.value) &&
+          (!region.value || d.region === region.value) &&
+          (!q || rank.has(item));
+        item.hidden = !match;
+        if (match) shown++;
+      }
+      const sorted = [...items].sort((a, b) => {
+        if (sort.value === "az")
+          return a.dataset.name!.localeCompare(b.dataset.name!);
+        if (sort.value === "new" && a.dataset.added !== b.dataset.added)
+          return b.dataset.added!.localeCompare(a.dataset.added!);
+        // Hidden cards have no rank; keep them after the matches.
+        if (q)
+          return (rank.get(a) ?? Infinity) - (rank.get(b) ?? Infinity) || 0;
+        return Number(a.dataset.index) - Number(b.dataset.index);
+      });
+      list.append(...sorted, addCard);
+      count.textContent = `${shown} of ${items.length}`;
+      empty.classList.toggle("hidden", shown > 0);
+    };
+
+    chips.forEach((chip) =>
+      chip.addEventListener("click", () => {
+        topic = chip.dataset.topic!;
+        chips.forEach((c) =>
+          c.setAttribute("aria-pressed", String(c === chip)),
+        );
+        render();
+      }),
+    );
+    [search, platform, region, sort].forEach((el) =>
+      el.addEventListener(el === search ? "input" : "change", render),
+    );
+    render();
+  };
+  document.addEventListener("astro:page-load", init);
+</script>
+
+<style>
+  /* Replace the native arrow so it sits inside the padding in every browser. */
+  select {
+    appearance: none;
+    padding-right: 2rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2371717a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1rem;
+  }
+</style>
